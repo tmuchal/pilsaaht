@@ -109,26 +109,24 @@
 
 ## Architecture
 
-```
-                    ┌───────────────────────┐
-                    │        Client         │
-                    │  React · TypeScript   │
-                    │  Tailwind CSS · Vite  │
-                    └───────────┬───────────┘
-                                │
-                                ▼
-                    ┌───────────────────────┐
-                    │   Supabase Backend    │
-                    │                       │
-                    │  ┌─────┐ ┌──────────┐ │
-                    │  │Auth │ │ Database │ │
-                    │  │OAuth│ │PostgreSQL│ │
-                    │  └─────┘ └──────────┘ │
-                    │  ┌──────────────────┐ │
-                    │  │  Edge Functions  │ │
-                    │  │  Google Gemini   │ │
-                    │  └──────────────────┘ │
-                    └───────────────────────┘
+```mermaid
+graph TD
+    Client["<b>Client</b><br/>React · TypeScript · Tailwind CSS · Vite"]
+    Backend["<b>Supabase Backend</b>"]
+    Auth["Auth<br/><sub>Google OAuth</sub>"]
+    DB["Database<br/><sub>PostgreSQL</sub>"]
+    Edge["Edge Functions<br/><sub>Google Gemini</sub>"]
+
+    Client -->|API| Backend
+    Backend --- Auth
+    Backend --- DB
+    Backend --- Edge
+
+    style Client fill:#E3F2FD,stroke:#1565C0,color:#0D47A1
+    style Backend fill:#E8F5E9,stroke:#2E7D32,color:#1B5E20
+    style Auth fill:#FFF3E0,stroke:#EF6C00,color:#E65100
+    style DB fill:#FFF3E0,stroke:#EF6C00,color:#E65100
+    style Edge fill:#FFF3E0,stroke:#EF6C00,color:#E65100
 ```
 
 <br/>
